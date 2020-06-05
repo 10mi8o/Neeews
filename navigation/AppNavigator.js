@@ -3,9 +3,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "@expo/vector-icons";
-import HomeScreen from "../screens/Home";
-import ArticleScreen from "../screens/Article";
-import ClipScreen from "../screens/Clip";
+import Home from "../screens/Home";
+import Article from "../screens/Article";
+import Clip from "../screens/Clip";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -13,8 +13,8 @@ const Tab = createBottomTabNavigator();
 const HomeStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Clip" component={ArticleScreen} />
+      <Stack.Screen name="意匠電子設計" component={Home} />
+      <Stack.Screen name="Article" component={Article} />
     </Stack.Navigator>
   );
 };
@@ -22,7 +22,8 @@ const HomeStack = () => {
 const ClipStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Clip" component={ClipScreen} />
+      <Stack.Screen name="Clip" component={Clip} />
+      <Stack.Screen name="Article" component={Article} />
     </Stack.Navigator>
   );
 };

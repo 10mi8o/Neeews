@@ -40,7 +40,7 @@ const Home = ({ navigation }) => {
             title={item.title}
             author={item.author}
             onPress={() => {
-              navigation.navigate("意匠電子設計 瓦版詳細", { article: item });
+              navigation.navigate("Article", { article: item });
             }}
           />
         )}
