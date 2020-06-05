@@ -5,7 +5,7 @@ import Constants from "expo-constants";
 import axios from "axios";
 
 //https://newsapi.org/
-const URL = `http://newsapi.org/v2/top-headlines?country=jp&category=business&apiKey=${Constants.manifest.extra.neeewsApiKey}`;
+const URL = `http://newsapi.org/v2/top-headlines?country=jp&category=science&apiKey=${Constants.manifest.extra.neeewsApiKey}`;
 
 const styles = StyleSheet.create({
   container: {
