@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -39,6 +39,9 @@ const Home = () => {
             imageUrl={item.urlToImage}
             title={item.title}
             author={item.author}
+            onPress={() => {
+              navigation.navigate("意匠電子設計 瓦版詳細", { article: item });
+            }}
           />
         )}
         keyExtractor={(item, index) => index.toString()}
