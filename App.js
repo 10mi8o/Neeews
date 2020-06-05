@@ -4,35 +4,46 @@ import ListItem from "./components/ListItem";
 import Constants from "expo-constants";
 import axios from "axios";
 
+//https://newsapi.org/
 const URL = `http://newsapi.org/v2/top-headlines?country=jp&category=business&apiKey=${Constants.manifest.extra.neeewsApiKey}`;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
 
 const App = () => {
   const [articles, setArticles] = useState([]);
+
   useEffect(() => {
-    alert(Constants.manifest.extra.neeewsApiKey);
+    fetchArticles();
   }, []);
 
+  const fetchArticles = async () => {
+    try {
+      const response = await axios.get(URL);
+      setArticles(response.data.articles);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <View style={styles.container}>
-      <ListItem
-        author="reactNeeews"
-        imageUrl="https://reactnative.dev/img/tiny_logo.png"
-        title="
-        吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。
-        何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。
-        吾輩はここで始めて人間というものを見た。
-        "
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={articles}
+        renderItem={({ item }) => (
+          <ListItem
+            imageUrl={item.urlToImage}
+            title={item.title}
+            author={item.author}
+          />
+        )}
+        keyExtractor={(item, index) => index.toString()}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
