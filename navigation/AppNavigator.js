@@ -2,6 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { FontAwesome } from "@expo/vector-icons";
 import HomeScreen from "../screens/Home";
 import ArticleScreen from "../screens/Article";
 import ClipScreen from "../screens/Clip";
@@ -12,8 +13,8 @@ const Tab = createBottomTabNavigator();
 const HomeStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="意匠電子設計 瓦版" component={HomeScreen} />
-      <Stack.Screen name="意匠電子設計 瓦版詳細" component={ArticleScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Clip" component={ArticleScreen} />
     </Stack.Navigator>
   );
 };
@@ -26,10 +27,25 @@ const ClipStack = () => {
   );
 };
 
+const screenOption = ({ route }) => ({
+  tabBarIcon: ({ color, size }) => {
+    let iconName;
+
+    if (route.name === "Home") {
+      iconName = "home";
+    } else if (route.name === "Clip") {
+      iconName = "bookmark";
+    }
+
+    // You can return any component that you like here!
+    return <FontAwesome name={iconName} size={24} color={color} />;
+  },
+});
+
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={screenOption}>
         <Tab.Screen name="Home" component={HomeStack} />
         <Tab.Screen name="Clip" component={ClipStack} />
       </Tab.Navigator>
