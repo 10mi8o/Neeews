@@ -1,6 +1,10 @@
-import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, FlatList, SafeAreaView } from "react-native";
 import ListItem from "./components/ListItem";
+import Constants from "expo-constants";
+import axios from "axios";
+
+const URL = `http://newsapi.org/v2/top-headlines?country=jp&category=business&apiKey=${Constants.manifest.extra.neeewsApiKey}`;
 
 const styles = StyleSheet.create({
   container: {
@@ -12,6 +16,11 @@ const styles = StyleSheet.create({
 });
 
 const App = () => {
+  const [articles, setArticles] = useState([]);
+  useEffect(() => {
+    alert(Constants.manifest.extra.neeewsApiKey);
+  }, []);
+
   return (
     <View style={styles.container}>
       <ListItem
