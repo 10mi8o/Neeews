@@ -20,7 +20,7 @@ export default Article = ({ route }) => {
   const user = useSelector((state) => state.user);
   const { clips } = user;
 
-  const isCliped = () => {
+  const isClipped = () => {
     return clips.some((clip) => clip.url === article.url);
   };
 
@@ -34,7 +34,7 @@ export default Article = ({ route }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ClipButton onPress={toggleClip} enabled={isCliped()} />
+      <ClipButton onPress={toggleClip} enabled={isClipped()} />
       <WebView source={{ uri: article.url }} />
     </SafeAreaView>
   );
